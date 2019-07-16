@@ -26,6 +26,7 @@ public class PoiService
 
   public List<MeshArea> findHeaviestAreas(int requestedAmount)
   {
-    return null;
+    return poiRepository.readMesh()
+                        .findHeaviestAreas(requestedAmount);
   }
 }
