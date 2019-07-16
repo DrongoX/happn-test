@@ -1,4 +1,4 @@
-package com.drongox.happntest.repository.poi;
+package com.drongox.happntest.repository.mesh;
 
 import static java.math.BigDecimal.valueOf;
 
@@ -10,14 +10,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PoiRepositoryTest
+@ActiveProfiles("test")
+public class WorldMeshRepositoryTest
 {
   @Autowired
-  private PoiRepository poiRepository;
+  private WorldMeshRepository worldMeshRepository;
 
 
   @Test
@@ -34,7 +36,7 @@ public class PoiRepositoryTest
     expectedMesh.addPoi(Poi.of("id7", GeoCoordinate.of(valueOf(0.1), valueOf(-0.1))));
     expectedMesh.addPoi(Poi.of("id8", GeoCoordinate.of(valueOf(-2.1), valueOf(38.1))));
     //when
-    WorldMesh worldMesh = poiRepository.readMesh();
+    WorldMesh worldMesh = worldMeshRepository.readMesh();
     //then
     Assertions.assertThat(worldMesh)
               .isEqualTo(expectedMesh);

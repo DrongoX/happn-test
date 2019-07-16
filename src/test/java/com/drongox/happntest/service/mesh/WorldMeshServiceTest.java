@@ -1,4 +1,4 @@
-package com.drongox.happntest.service.poi;
+package com.drongox.happntest.service.mesh;
 
 import static java.math.BigDecimal.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,14 +7,14 @@ import com.drongox.happntest.object.GeoCoordinate;
 import com.drongox.happntest.object.mesh.MeshArea;
 import com.drongox.happntest.object.mesh.WorldMesh;
 import com.drongox.happntest.object.poi.Poi;
-import com.drongox.happntest.repository.poi.PoiRepository;
+import com.drongox.happntest.repository.mesh.WorldMeshRepository;
 import java.util.List;
 import org.junit.Test;
 
-public class PoiServiceTest
+public class WorldMeshServiceTest
 {
-  private final TestPoiRepository poiRepository = new TestPoiRepository();
-  private final PoiService poiService = new PoiService(poiRepository);
+  private final TestWorldMeshRepository poiRepository = new TestWorldMeshRepository();
+  private final WorldMeshService worldMeshService = new WorldMeshService(poiRepository);
 
 
   @Test
@@ -24,7 +24,7 @@ public class PoiServiceTest
     GeoCoordinate geoCoordinate = GeoCoordinate.of(valueOf(6.5), valueOf(-7));
     int expectedCount = 2;
     //when
-    int actualCount = poiService.poiCountOn(geoCoordinate);
+    int actualCount = worldMeshService.poiCountOn(geoCoordinate);
     //then
     assertThat(actualCount).isEqualTo(expectedCount);
   }
@@ -37,7 +37,7 @@ public class PoiServiceTest
     GeoCoordinate geoCoordinate = GeoCoordinate.of(valueOf(90), valueOf(0));
     int expectedCount = 1;
     //when
-    int actualCount = poiService.poiCountOn(geoCoordinate);
+    int actualCount = worldMeshService.poiCountOn(geoCoordinate);
     //then
     assertThat(actualCount).isEqualTo(expectedCount);
   }
@@ -50,7 +50,7 @@ public class PoiServiceTest
     GeoCoordinate geoCoordinate = GeoCoordinate.of(valueOf(0), valueOf(180));
     int expectedCount = 1;
     //when
-    int actualCount = poiService.poiCountOn(geoCoordinate);
+    int actualCount = worldMeshService.poiCountOn(geoCoordinate);
     //then
     assertThat(actualCount).isEqualTo(expectedCount);
   }
@@ -64,14 +64,14 @@ public class PoiServiceTest
     List<MeshArea> expectedAreas = List.of(new MeshArea(GeoCoordinate.of(valueOf(-2.5), valueOf(38))),
                                            new MeshArea(GeoCoordinate.of(valueOf(6.5), valueOf(-7))));
     //when
-    List<MeshArea> foundAreas = poiService.findHeaviestAreas(requestedAmount);
+    List<MeshArea> foundAreas = worldMeshService.findHeaviestAreas(requestedAmount);
     //then
     assertThat(foundAreas).hasSize(2)
                           .containsExactlyElementsOf(expectedAreas);
   }
 
 
-  private static class TestPoiRepository extends PoiRepository
+  private static class TestWorldMeshRepository extends WorldMeshRepository
   {
     private static final WorldMesh WORLD_MESH = new WorldMesh();
 
@@ -89,7 +89,7 @@ public class PoiServiceTest
     }
 
 
-    TestPoiRepository()
+    TestWorldMeshRepository()
     {
       super(null);
     }

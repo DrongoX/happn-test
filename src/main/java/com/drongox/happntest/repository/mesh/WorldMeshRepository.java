@@ -1,4 +1,4 @@
-package com.drongox.happntest.repository.poi;
+package com.drongox.happntest.repository.mesh;
 
 import com.drongox.happntest.object.GeoCoordinate;
 import com.drongox.happntest.object.mesh.WorldMesh;
@@ -8,20 +8,23 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class PoiRepository
+public class WorldMeshRepository
 {
   private final TsvParser tsvParser;
+  @Value("${mesh.repo.sourceFile}")
+  private String tsvFileName;
 
 
   public WorldMesh readMesh()
   {
-    Resource tsvFile = new ClassPathResource("poi_data.tsv");
+    Resource tsvFile = new ClassPathResource(tsvFileName);
     try (FileReader fileReader = new FileReader(tsvFile.getFile())) {
       WorldMesh worldMesh = new WorldMesh();
       tsvParser.parseAll(fileReader)
