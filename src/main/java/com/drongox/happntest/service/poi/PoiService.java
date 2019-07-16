@@ -16,6 +16,8 @@ public class PoiService
 
   public int poiCountOn(MeshCoordinate coordinate)
   {
-    return 0;
+    return poiRepository.readMesh()
+                        .getPoiOn(coordinate)
+                        .size();
   }
 }
