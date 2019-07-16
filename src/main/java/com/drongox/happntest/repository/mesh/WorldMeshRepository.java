@@ -29,7 +29,7 @@ public class WorldMeshRepository
       WorldMesh worldMesh = new WorldMesh();
       tsvParser.parseAll(fileReader)
                .stream()
-               .skip(1)
+               .skip(1) //skipping header
                .map(strings -> Poi.of(strings[0],
                                       GeoCoordinate.of(new BigDecimal(strings[1]),
                                                        new BigDecimal(strings[2]))))
