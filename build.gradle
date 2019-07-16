@@ -15,7 +15,9 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.univocity:univocity-parsers:2.8.2'
 	compileOnly 'org.projectlombok:lombok:1.18.4'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation "org.assertj:assertj-core:3.11.1"
 

@@ -1,14 +1,11 @@
 package com.drongox.happntest.entity.mesh;
 
 import static java.math.BigDecimal.valueOf;
-import static java.text.MessageFormat.format;
 
-import com.drongox.happntest.entity.Coordinate;
+import com.drongox.happntest.entity.GeoCoordinate;
 import java.math.BigDecimal;
 import java.util.Objects;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 
@@ -27,34 +24,34 @@ public final class MeshArea
   private final BigDecimal rightLongitude;
 
 
-  public MeshArea(Coordinate coordinate)
+  public MeshArea(GeoCoordinate geoCoordinate)
   {
-    Coordinate normalizedCoordinate = normalizeToLowerLeft(coordinate);
+    GeoCoordinate normalizedGeoCoordinate = normalizeToLowerLeft(geoCoordinate);
 
-    if (normalizedCoordinate.isLongitudeUpperBound()) {
-      rightLongitude = normalizedCoordinate.getLongitude();
-      leftLongitude = normalizedCoordinate.getLongitude().subtract(valueOf(MESH_GRANULARITY));
+    if (normalizedGeoCoordinate.isLongitudeUpperBound()) {
+      rightLongitude = normalizedGeoCoordinate.getLongitude();
+      leftLongitude = normalizedGeoCoordinate.getLongitude().subtract(valueOf(MESH_GRANULARITY));
     }
     else {
-      leftLongitude = normalizedCoordinate.getLongitude();
-      rightLongitude = normalizedCoordinate.getLongitude().add(valueOf(MESH_GRANULARITY));
+      leftLongitude = normalizedGeoCoordinate.getLongitude();
+      rightLongitude = normalizedGeoCoordinate.getLongitude().add(valueOf(MESH_GRANULARITY));
     }
 
-    if (normalizedCoordinate.isLatitudeUpperBound()) {
-      upperLatitude = normalizedCoordinate.getLatitude();
-      lowerLatitude = normalizedCoordinate.getLatitude().subtract(valueOf(MESH_GRANULARITY));
+    if (normalizedGeoCoordinate.isLatitudeUpperBound()) {
+      upperLatitude = normalizedGeoCoordinate.getLatitude();
+      lowerLatitude = normalizedGeoCoordinate.getLatitude().subtract(valueOf(MESH_GRANULARITY));
     }
     else {
-      lowerLatitude = normalizedCoordinate.getLatitude();
-      upperLatitude = normalizedCoordinate.getLatitude().add(valueOf(MESH_GRANULARITY));
+      lowerLatitude = normalizedGeoCoordinate.getLatitude();
+      upperLatitude = normalizedGeoCoordinate.getLatitude().add(valueOf(MESH_GRANULARITY));
     }
   }
 
 
-  private static Coordinate normalizeToLowerLeft(Coordinate coordinate)
+  private static GeoCoordinate normalizeToLowerLeft(GeoCoordinate geoCoordinate)
   {
-    return Coordinate.of(normalizeCoordinate(coordinate.getLatitude()),
-                         normalizeCoordinate(coordinate.getLongitude()));
+    return GeoCoordinate.of(normalizeCoordinate(geoCoordinate.getLatitude()),
+                            normalizeCoordinate(geoCoordinate.getLongitude()));
   }
 
 
