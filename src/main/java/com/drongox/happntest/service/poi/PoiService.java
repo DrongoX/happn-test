@@ -1,6 +1,6 @@
 package com.drongox.happntest.service.poi;
 
-import com.drongox.happntest.entity.poi.MeshCoordinate;
+import com.drongox.happntest.entity.Coordinate;
 import com.drongox.happntest.repository.poi.PoiRepository;
 
 public class PoiService
@@ -14,7 +14,7 @@ public class PoiService
   }
 
 
-  public int poiCountOn(MeshCoordinate coordinate)
+  public int poiCountOn(Coordinate coordinate)
   {
     return poiRepository.readMesh()
                         .getPoiOn(coordinate)

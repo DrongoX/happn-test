@@ -1,5 +1,6 @@
 package com.drongox.happntest.entity.poi;
 
+import com.drongox.happntest.entity.Coordinate;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
@@ -8,5 +9,5 @@ import lombok.Value;
 public final class Poi
 {
   private final String id;
-  private final MeshCoordinate coordinate;
+  private final Coordinate coordinate;
 }

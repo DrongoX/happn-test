@@ -3,9 +3,9 @@ package com.drongox.happntest.service.poi;
 import static java.math.BigDecimal.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.drongox.happntest.entity.poi.MeshCoordinate;
+import com.drongox.happntest.entity.Coordinate;
 import com.drongox.happntest.entity.poi.Poi;
-import com.drongox.happntest.entity.poi.WorldMesh;
+import com.drongox.happntest.entity.mesh.WorldMesh;
 import com.drongox.happntest.repository.poi.PoiRepository;
 import org.junit.Test;
 
@@ -19,8 +19,36 @@ public class PoiServiceTest
   {
     //given
     PoiService poiService = new PoiService(poiRepository);
-    MeshCoordinate coordinate = MeshCoordinate.of(valueOf(6.5), valueOf(-7.0));
+    Coordinate coordinate = Coordinate.of(valueOf(6.5), valueOf(-7));
     int expectedCount = 2;
+    //when
+    int actualCount = poiService.poiCountOn(coordinate);
+    //then
+    assertThat(actualCount).isEqualTo(expectedCount);
+  }
+
+
+  @Test
+  public void should_find_1_poi_when_coordinate_90_lat_0_long()
+  {
+    //given
+    PoiService poiService = new PoiService(poiRepository);
+    Coordinate coordinate = Coordinate.of(valueOf(90), valueOf(0));
+    int expectedCount = 1;
+    //when
+    int actualCount = poiService.poiCountOn(coordinate);
+    //then
+    assertThat(actualCount).isEqualTo(expectedCount);
+  }
+
+
+  @Test
+  public void should_find_1_poi_when_coordinate_0_lat_180_long()
+  {
+    //given
+    PoiService poiService = new PoiService(poiRepository);
+    Coordinate coordinate = Coordinate.of(valueOf(0), valueOf(180));
+    int expectedCount = 1;
     //when
     int actualCount = poiService.poiCountOn(coordinate);
     //then
@@ -34,14 +62,16 @@ public class PoiServiceTest
 
 
     static {
-      WORLD_MESH.addPoi(Poi.of("id1", MeshCoordinate.of(valueOf(-48.6), valueOf(-37.7))));
-      WORLD_MESH.addPoi(Poi.of("id2", MeshCoordinate.of(valueOf(-27.1), valueOf(8.4))));
-      WORLD_MESH.addPoi(Poi.of("id3", MeshCoordinate.of(valueOf(6.6), valueOf(-6.9))));
-      WORLD_MESH.addPoi(Poi.of("id4", MeshCoordinate.of(valueOf(-2.3), valueOf(38.3))));
-      WORLD_MESH.addPoi(Poi.of("id5", MeshCoordinate.of(valueOf(6.8), valueOf(-6.9))));
-      WORLD_MESH.addPoi(Poi.of("id6", MeshCoordinate.of(valueOf(-2.5), valueOf(38.3))));
-      WORLD_MESH.addPoi(Poi.of("id7", MeshCoordinate.of(valueOf(0.1), valueOf(-0.1))));
-      WORLD_MESH.addPoi(Poi.of("id8", MeshCoordinate.of(valueOf(-2.1), valueOf(38.1))));
+      WORLD_MESH.addPoi(Poi.of("id1", Coordinate.of(valueOf(-48.6), valueOf(-37.7))));
+      WORLD_MESH.addPoi(Poi.of("id2", Coordinate.of(valueOf(-27.1), valueOf(8.4))));
+      WORLD_MESH.addPoi(Poi.of("id3", Coordinate.of(valueOf(6.6), valueOf(-6.9))));
+      WORLD_MESH.addPoi(Poi.of("id4", Coordinate.of(valueOf(-2.3), valueOf(38.3))));
+      WORLD_MESH.addPoi(Poi.of("id5", Coordinate.of(valueOf(6.8), valueOf(-6.9))));
+      WORLD_MESH.addPoi(Poi.of("id6", Coordinate.of(valueOf(-2.5), valueOf(38.3))));
+      WORLD_MESH.addPoi(Poi.of("id7", Coordinate.of(valueOf(0.1), valueOf(-0.1))));
+      WORLD_MESH.addPoi(Poi.of("id8", Coordinate.of(valueOf(-2.1), valueOf(38.1))));
+      WORLD_MESH.addPoi(Poi.of("id10", Coordinate.of(valueOf(90), valueOf(0))));
+      WORLD_MESH.addPoi(Poi.of("id11", Coordinate.of(valueOf(0), valueOf(180))));
     }
 
 

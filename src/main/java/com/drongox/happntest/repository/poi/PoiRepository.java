@@ -1,7 +1,6 @@
 package com.drongox.happntest.repository.poi;
 
-import com.drongox.happntest.entity.poi.MeshCoordinate;
-import com.drongox.happntest.entity.poi.WorldMesh;
+import com.drongox.happntest.entity.mesh.WorldMesh;
 
 public class PoiRepository
 {
