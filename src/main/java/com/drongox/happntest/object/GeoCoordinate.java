@@ -1,4 +1,4 @@
-package com.drongox.happntest.entity;
+package com.drongox.happntest.object;
 
 import static java.text.MessageFormat.format;
 

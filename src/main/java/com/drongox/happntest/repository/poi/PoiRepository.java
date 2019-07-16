@@ -1,8 +1,8 @@
 package com.drongox.happntest.repository.poi;
 
-import com.drongox.happntest.entity.GeoCoordinate;
-import com.drongox.happntest.entity.mesh.WorldMesh;
-import com.drongox.happntest.entity.poi.Poi;
+import com.drongox.happntest.object.GeoCoordinate;
+import com.drongox.happntest.object.mesh.WorldMesh;
+import com.drongox.happntest.object.poi.Poi;
 import com.univocity.parsers.tsv.TsvParser;
 import java.io.FileReader;
 import java.io.IOException;

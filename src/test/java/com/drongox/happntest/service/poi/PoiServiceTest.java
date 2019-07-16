@@ -3,10 +3,10 @@ package com.drongox.happntest.service.poi;
 import static java.math.BigDecimal.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.drongox.happntest.entity.GeoCoordinate;
-import com.drongox.happntest.entity.mesh.MeshArea;
-import com.drongox.happntest.entity.mesh.WorldMesh;
-import com.drongox.happntest.entity.poi.Poi;
+import com.drongox.happntest.object.GeoCoordinate;
+import com.drongox.happntest.object.mesh.MeshArea;
+import com.drongox.happntest.object.mesh.WorldMesh;
+import com.drongox.happntest.object.poi.Poi;
 import com.drongox.happntest.repository.poi.PoiRepository;
 import java.util.List;
 import org.junit.Test;

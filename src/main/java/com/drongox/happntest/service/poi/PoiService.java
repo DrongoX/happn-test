@@ -1,7 +1,7 @@
 package com.drongox.happntest.service.poi;
 
-import com.drongox.happntest.entity.GeoCoordinate;
-import com.drongox.happntest.entity.mesh.MeshArea;
+import com.drongox.happntest.object.GeoCoordinate;
+import com.drongox.happntest.object.mesh.MeshArea;
 import com.drongox.happntest.repository.poi.PoiRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package com.drongox.happntest.entity.poi;
+package com.drongox.happntest.object.poi;
 
-import com.drongox.happntest.entity.GeoCoordinate;
+import com.drongox.happntest.object.GeoCoordinate;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;

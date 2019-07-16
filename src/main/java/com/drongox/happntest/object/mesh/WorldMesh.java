@@ -1,10 +1,10 @@
-package com.drongox.happntest.entity.mesh;
+package com.drongox.happntest.object.mesh;
 
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toList;
 
-import com.drongox.happntest.entity.GeoCoordinate;
-import com.drongox.happntest.entity.poi.Poi;
+import com.drongox.happntest.object.GeoCoordinate;
+import com.drongox.happntest.object.poi.Poi;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

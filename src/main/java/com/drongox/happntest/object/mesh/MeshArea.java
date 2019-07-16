@@ -1,8 +1,9 @@
-package com.drongox.happntest.entity.mesh;
+package com.drongox.happntest.object.mesh;
 
 import static java.math.BigDecimal.valueOf;
 
-import com.drongox.happntest.entity.GeoCoordinate;
+import com.drongox.happntest.object.GeoCoordinate;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.util.Objects;
 import lombok.Getter;
@@ -18,9 +19,13 @@ public final class MeshArea
   private static final BigDecimal UPPER_LATITUDE_BOUND = valueOf(90);
   private static final BigDecimal UPPER_LONGITUDE_BOUND = valueOf(180);
 
+  @JsonProperty(value = "min_lat")
   private final BigDecimal lowerLatitude;
+  @JsonProperty(value = "max_lat")
   private final BigDecimal upperLatitude;
+  @JsonProperty(value = "min_lon")
   private final BigDecimal leftLongitude;
+  @JsonProperty(value = "max_lon")
   private final BigDecimal rightLongitude;
 
 
