@@ -1,7 +1,9 @@
 package com.drongox.happntest.service.poi;
 
 import com.drongox.happntest.entity.Coordinate;
+import com.drongox.happntest.entity.mesh.MeshArea;
 import com.drongox.happntest.repository.poi.PoiRepository;
+import java.util.List;
 
 public class PoiService
 {
@@ -19,5 +21,11 @@ public class PoiService
     return poiRepository.readMesh()
                         .getPoiOn(coordinate)
                         .size();
+  }
+
+
+  public List<MeshArea> findHeaviestAreas(int requestedAmount)
+  {
+    return null;
   }
 }

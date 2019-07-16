@@ -4,21 +4,23 @@ import static java.math.BigDecimal.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.drongox.happntest.entity.Coordinate;
+import com.drongox.happntest.entity.mesh.MeshArea;
 import com.drongox.happntest.entity.poi.Poi;
 import com.drongox.happntest.entity.mesh.WorldMesh;
 import com.drongox.happntest.repository.poi.PoiRepository;
+import java.util.List;
 import org.junit.Test;
 
 public class PoiServiceTest
 {
   private final TestPoiRepository poiRepository = new TestPoiRepository();
+  private final PoiService poiService = new PoiService(poiRepository);
 
 
   @Test
   public void should_find_2_poi_when_coordinate_6_5_lat_minus_7_0_long()
   {
     //given
-    PoiService poiService = new PoiService(poiRepository);
     Coordinate coordinate = Coordinate.of(valueOf(6.5), valueOf(-7));
     int expectedCount = 2;
     //when
@@ -32,7 +34,6 @@ public class PoiServiceTest
   public void should_find_1_poi_when_coordinate_90_lat_0_long()
   {
     //given
-    PoiService poiService = new PoiService(poiRepository);
     Coordinate coordinate = Coordinate.of(valueOf(90), valueOf(0));
     int expectedCount = 1;
     //when
@@ -46,7 +47,6 @@ public class PoiServiceTest
   public void should_find_1_poi_when_coordinate_0_lat_180_long()
   {
     //given
-    PoiService poiService = new PoiService(poiRepository);
     Coordinate coordinate = Coordinate.of(valueOf(0), valueOf(180));
     int expectedCount = 1;
     //when
@@ -56,10 +56,24 @@ public class PoiServiceTest
   }
 
 
+  @Test
+  public void should_find_2_heaviest_areas_when_asked_for_2()
+  {
+    //given
+    int requestedAmount = 2;
+    List<MeshArea> expectedAreas = List.of(new MeshArea(Coordinate.of(valueOf(-2.5), valueOf(38))),
+                                           new MeshArea(Coordinate.of(valueOf(6.5), valueOf(-7))));
+    //when
+    List<MeshArea> foundAreas = poiService.findHeaviestAreas(requestedAmount);
+    //then
+    assertThat(foundAreas).hasSize(2)
+                          .containsExactlyElementsOf(expectedAreas);
+  }
+
+
   private static class TestPoiRepository extends PoiRepository
   {
     private static final WorldMesh WORLD_MESH = new WorldMesh();
-
 
     static {
       WORLD_MESH.addPoi(Poi.of("id1", Coordinate.of(valueOf(-48.6), valueOf(-37.7))));
@@ -73,7 +87,6 @@ public class PoiServiceTest
       WORLD_MESH.addPoi(Poi.of("id10", Coordinate.of(valueOf(90), valueOf(0))));
       WORLD_MESH.addPoi(Poi.of("id11", Coordinate.of(valueOf(0), valueOf(180))));
     }
-
 
     @Override
     public WorldMesh readMesh()
